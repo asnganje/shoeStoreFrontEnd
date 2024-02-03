@@ -21,7 +21,7 @@ const Footer = () => {
         )
     })
     return(
-        <div className="absolute bottom-0 shadow-lg text-blue-800 border left-0 flex flex-col justify-between w-[100%] gap-1 font-mono items-center">
+        <div className=" shadow-lg text-blue-800 border sm:flex hidden flex-col justify-between gap-1 font-mono items-center">
             <p>&copy; {date} TurkishFatma. All rights reserved.</p>
             <ul className="font-mono mb-3 flex gap-2">{renderedIcons}</ul>
         </div>
