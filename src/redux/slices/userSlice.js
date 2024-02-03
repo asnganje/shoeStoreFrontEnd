@@ -10,6 +10,14 @@ const persons = {
 const userSlice = createSlice({
     name: 'user',
     initialState: persons,
+    reducers: {
+        setLoggedIn: (state, action) => {
+        state.isloggedIn = action.payload;
+        },
+        setLoggedOut: (state, action) => {
+        state.isloggedIn = action.payload;
+        },
+        },
     extraReducers(builder) {
         builder.addCase(createUser.pending, (state) => {
             state.isLoading = true;
