@@ -7,7 +7,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 
 const Login = () => {
     return(
-        <section className="relative h-screen">
+        <section className="relative mx-[5%] h-screen">
         <Header />
         <div className="flex flex-col gap-5 items-center text-xl font-mono justify-center mt-10">
           <div className="bg-pink-200 p-5 shadow-lg rounded-md h-full w-[100%] md:w-[70vh] mt-10">
