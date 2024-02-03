@@ -2,7 +2,7 @@ import Footer from "../Footer";
 import Header from "../Header";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -15,6 +15,8 @@ const Login = () => {
     const [visible, setVisible] = useState(false)
 
     const dispatch = useDispatch()
+
+    const navigate = useNavigate();
 
     let textType;
     if(visible) {
@@ -39,6 +41,17 @@ const Login = () => {
     const loginHandler = (e) => {
       e.preventDefault()
       dispatch(loginUser(user))
+      .then((result) => {
+        if (result.payload) {
+          setEmail("");
+          setPassword("");
+          localStorage.setItem("user", result.payload.msg.firstName);
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+      });
     }
 
 
