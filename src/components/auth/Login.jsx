@@ -7,6 +7,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/thunks/userThunk";
+import { setLoggedIn } from "../../redux/store";
 
 const Login = () => {
 
@@ -46,6 +47,7 @@ const Login = () => {
           setEmail("");
           setPassword("");
           localStorage.setItem("user", result.payload.msg.firstName);
+          dispatch(setLoggedIn(true))
           navigate("/");
         }
       })
