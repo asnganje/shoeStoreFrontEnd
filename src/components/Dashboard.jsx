@@ -1,6 +1,12 @@
+import Header from "./Header";
+
 const Dashboard = () => {
     return(
-        <div>Dashboard</div>
+        <main className="h-screen mx-[5%]">
+            <Header />
+            Dashboard
+            
+        </main>
     )
 }
 
