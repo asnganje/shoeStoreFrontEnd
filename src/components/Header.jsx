@@ -6,8 +6,8 @@ import { RxCross2 } from "react-icons/rx";
 import { useState, useEffect } from "react";
 
 const data = [
-  { id: nanoid(), text: "Products", route: "/vtcs" },
-  { id: nanoid(), text: "Stores", route: "/courses" },
+  { id: nanoid(), text: "Products", route: "/products" },
+  { id: nanoid(), text: "Stores", route: "/store" },
 ];
 const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -76,9 +76,9 @@ const Header = () => {
                       </button>
                     </Link>{" "}
                     <span className="text-orange-500">|</span>{" "}
-                    <Link to="/register">
+                    <Link to="/signup">
                       <button className="p-1 rounded-md hover:bg-blue-400 hover:text-white">
-                        Register
+                        SignUp
                       </button>
                     </Link>
                   </div>
@@ -124,9 +124,9 @@ const Header = () => {
                     </button>
                   </Link>{" "}
                   <span className="text-orange-500">|</span>{" "}
-                  <Link to="/register">
+                  <Link to="/signup">
                     <button className="p-1 rounded-md hover:bg-blue-400 hover:text-white">
-                      Register
+                      SignUp
                     </button>
                   </Link>
                 </div>
