@@ -3,7 +3,7 @@ import shoeTypes from '../assets/shoegroup.png'
 const Home = () => {
     return (
             <div className="flex flex-col lg:flex-row sm:gap-[5vh] sm:my-[5%] gap-[5vh] justify-between bg-white">
-                <div className="flex flex-col w-[100%] gap-[1vh]  bg-blue-300 rounded-md">
+                <div className="flex flex-col w-[100%] gap-[1vh]  bg-pink-500 rounded-md">
                     <h2 className="text-white text-2xl font-bold font-mono p-1">
                         Your quick online provider of top quality shoe products.
                     </h2>
@@ -11,7 +11,7 @@ const Home = () => {
                         The Gateway to smooth purchase of your desired shoe products ranging from sports wear, pure leather, loafers, sneakers to sandals.
                     </p>
                     <div className='flex items-center justify-center'>
-                        <button className="text-blue-500 mb-[5%] bg-white rounded-md text-xl font-bold p-2">Contact Us</button>
+                        <button className= "mb-[5%] bg-gray-500 text-white rounded-md text-xl font-bold p-2">Contact Us</button>
                     </div>
                 </div>
                     <div className="w-[100%] flex items-center justify-center">
