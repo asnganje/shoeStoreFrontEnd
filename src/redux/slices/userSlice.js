@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createUser } from "../thunks/userThunk";
+import { createUser, loginUser } from "../thunks/userThunk";
 
 const persons = {
     isLoading: false,
@@ -14,14 +14,23 @@ const userSlice = createSlice({
         builder.addCase(createUser.pending, (state) => {
             state.isLoading = true;
         }),
-        builder.addCase(createUser.fulfilled, (state, action)=> {
+        builder.addCase(createUser.fulfilled, (state)=> {
             state.isLoading = false;
             state.isActive = true;
-            state.data.push(action.payload)
         }),
         builder.addCase(createUser.rejected, (state)=> {
             state.isLoading = false;
             state.isActive = false;
+        }),
+        builder.addCase(loginUser.pending, (state)=> {
+            state.isLoading = true;
+        }),
+        builder.addCase(loginUser.fulfilled, (state,action)=> {
+            state.isLoading = false;
+            state.data.push(action.payload)
+        }),
+        builder.addCase(loginUser.rejected, (state)=> {
+            state.isLoading = false
         })
     }
 })
