@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import shoeLogo from "../assets/shoes.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setLoggedOut } from "../redux/store";
 
 const data = [
   { id: nanoid(), text: "Products", route: "/products" },
   { id: nanoid(), text: "Stores", route: "/store" },
 ];
-const Header = () => {
+const Header = ({setCandidate}) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
@@ -26,8 +28,6 @@ const Header = () => {
     };
   }, []);
 
-  const logOutHandler = () => {};
-
   const toggleNav = () => {
     setIsNavOpen(true);
   };
@@ -36,13 +36,23 @@ const Header = () => {
     setIsNavOpen(false);
   };
 
-  const handleHeaderItemClick = () => {};
+  const activeUser = localStorage.getItem('user')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const logOutHandler = ()=> {
+      dispatch(setLoggedOut(false))
+      localStorage.removeItem('user')
+      setCandidate(localStorage.getItem('user'))
+      navigate('/')
+  }
+
+
 
   const renderedHeaderItems = data.map((item) => {
     return (
       <li
         key={item.id}
-        onClick={() => handleHeaderItemClick(item.id)}
         className="text-orange-400 cursor-pointer p-1 text-xl hover:bg-blue-500 hover:rounded-md hover:text-white"
       >
         {item.text}
@@ -68,24 +78,22 @@ const Header = () => {
             </nav>
             {
               <div className="p-2 flex items-center space-x-4 w-full">
-                {
-                  <div className="text-blue-800 p-2 text-xl">
+                {!activeUser && <div className="text-blue-800 p-2 text-xl">
                     <Link to="/login">
                       <button className="p-1 rounded-md text-orange-700 hover:bg-blue-400 hover:text-white">
                         Login
                       </button>
-                    </Link>{" "}
-                    <span className="text-orange-500">|</span>{" "}
+                    </Link>
+                    <span className="text-orange-500">|</span>
                     <Link to="/signup">
                       <button className="p-1 text-orange-700 rounded-md hover:bg-blue-400 hover:text-white">
                         SignUp
                       </button>
                     </Link>
-                  </div>
-                }
-                {
-                  <p className="flex sm:flex-row gap-2 flex-col">
-                    <span className="mt-[1vh] cursor-pointer">Welcome</span>
+                  </div>}
+                { activeUser &&
+                    <p className="flex sm:flex-row gap-2 flex-col">
+                    <span className="mt-[1vh] cursor-pointer">Welcome {activeUser}</span>
                     <Link to="/">
                       <button
                         className="text-white bg-orange-300 p-1 rounded-md text-xl hover:bg-blue-400"
@@ -116,8 +124,7 @@ const Header = () => {
           </ul>
           {
             <div className="flex w-full">
-              {
-                <div className="text-blue-800 m-0 p-2 text-xl">
+              { !activeUser && <div className="text-blue-800 m-0 p-2 text-xl">
                   <Link to="/login">
                     <button className="p-1 rounded-md text-orange-700 hover:bg-blue-400 hover:text-white">
                       Login
@@ -131,9 +138,8 @@ const Header = () => {
                   </Link>
                 </div>
               }
-              {
-                <p className="flex sm:flex-row gap-2 flex-col">
-                  <span className="mt-[1vh] cursor-pointer">Welcome</span>
+              {activeUser && <p className="flex sm:flex-row gap-2 flex-col">
+                  <span className="mt-[1vh] cursor-pointer">Welcome {activeUser}</span>
                   <Link to="/">
                     <button
                       className="text-white bg-orange-300 p-1 rounded-md text-xl hover:bg-blue-400"
