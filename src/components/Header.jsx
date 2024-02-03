@@ -43,7 +43,7 @@ const Header = () => {
       <li
         key={item.id}
         onClick={() => handleHeaderItemClick(item.id)}
-        className="text-blue-400 cursor-pointer p-1 text-xl hover:bg-blue-500 hover:rounded-md hover:text-white"
+        className="text-orange-400 cursor-pointer p-1 text-xl hover:bg-blue-500 hover:rounded-md hover:text-white"
       >
         {item.text}
       </li>
@@ -71,13 +71,13 @@ const Header = () => {
                 {
                   <div className="text-blue-800 p-2 text-xl">
                     <Link to="/login">
-                      <button className="p-1 rounded-md hover:bg-blue-400 hover:text-white">
+                      <button className="p-1 rounded-md text-orange-700 hover:bg-blue-400 hover:text-white">
                         Login
                       </button>
                     </Link>{" "}
                     <span className="text-orange-500">|</span>{" "}
                     <Link to="/signup">
-                      <button className="p-1 rounded-md hover:bg-blue-400 hover:text-white">
+                      <button className="p-1 text-orange-700 rounded-md hover:bg-blue-400 hover:text-white">
                         SignUp
                       </button>
                     </Link>
@@ -88,7 +88,7 @@ const Header = () => {
                     <span className="mt-[1vh] cursor-pointer">Welcome</span>
                     <Link to="/">
                       <button
-                        className="text-white bg-blue-500 p-1 rounded-md text-xl hover:bg-blue-400"
+                        className="text-white bg-orange-300 p-1 rounded-md text-xl hover:bg-blue-400"
                         onClick={logOutHandler}
                       >
                         Logout
@@ -100,7 +100,7 @@ const Header = () => {
             }
           </div>
         ) : (
-          <div className="cursor-pointer text-4xl p-1 text-blue-500 md:hidden">
+          <div className="cursor-pointer text-4xl mb-[5%] p-1 text-orange-700 md:hidden">
             {!isNavOpen ? (
               <RxHamburgerMenu onClick={toggleNav} />
             ) : (
@@ -119,13 +119,13 @@ const Header = () => {
               {
                 <div className="text-blue-800 m-0 p-2 text-xl">
                   <Link to="/login">
-                    <button className="p-1 rounded-md hover:bg-blue-400 hover:text-white">
+                    <button className="p-1 rounded-md text-orange-700 hover:bg-blue-400 hover:text-white">
                       Login
                     </button>
                   </Link>{" "}
                   <span className="text-orange-500">|</span>{" "}
                   <Link to="/signup">
-                    <button className="p-1 rounded-md hover:bg-blue-400 hover:text-white">
+                    <button className="p-1 rounded-md text-orange-700 hover:bg-blue-400 hover:text-white">
                       SignUp
                     </button>
                   </Link>
@@ -136,7 +136,7 @@ const Header = () => {
                   <span className="mt-[1vh] cursor-pointer">Welcome</span>
                   <Link to="/">
                     <button
-                      className="text-white bg-blue-500 p-1 rounded-md text-xl hover:bg-blue-400"
+                      className="text-white bg-orange-300 p-1 rounded-md text-xl hover:bg-blue-400"
                       onClick={logOutHandler}
                     >
                       Logout
