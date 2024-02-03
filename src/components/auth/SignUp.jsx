@@ -41,7 +41,7 @@ const SignUp = () => {
                             </div>
                             <button className="text-white rounded-md w-[50%] mx-[35%] bg-gray-400 hover:bg-gray-500 p-2">Register</button>
                         </form>
-                        <div className="flex gap-5 mt-5">
+                        <div className="flex justify-center gap-5 mt-5">
                             <p className="text-gray-600 italic space-x-0">Already registered?</p><Link to='/login' className="text-gray-600 hover:text-blue-500 hover:underline">Login here!</Link>
                         </div>
                     </div>
