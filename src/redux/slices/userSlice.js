@@ -15,10 +15,12 @@ const userSlice = createSlice({
         }),
         builder.addCase(createUser.fulfilled, (state, action)=> {
             state.isLoading = false;
+            state.isLoggedIn = true;
             state.data.push(action.payload)
         }),
         builder.addCase(createUser.rejected, (state)=> {
             state.isLoading = false;
+            state.isLoggedIn = false;
         })
     }
 })
