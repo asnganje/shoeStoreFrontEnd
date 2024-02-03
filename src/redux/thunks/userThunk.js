@@ -13,7 +13,7 @@ const createUser = createAsyncThunk('user/createUser', async (user)=> {
 
 const loginUser = createAsyncThunk('user/loginUser', async (user, {rejectWithValue})=> {
     try {
-        const url = `${baseUrl}/signup`
+        const url = `${baseUrl}/login`
         const { email, password } = user;
         const response = await axios.post(url, { email, password });
 
