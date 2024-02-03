@@ -11,4 +11,21 @@ const createUser = createAsyncThunk('user/createUser', async (user)=> {
     }
 })
 
-export {createUser}
+const loginUser = createAsyncThunk('user/loginUser', async (user, {rejectWithValue})=> {
+    try {
+        const url = `${baseUrl}/signup`
+        const { email, password } = user;
+        const response = await axios.post(url, { email, password });
+
+        if (response.data) {
+            return response.data;
+        } else {
+            throw new Error(`Could not login user`);
+        }
+
+    } catch (error) {
+        return rejectWithValue(error.response.data.msg);
+    }
+})
+
+export {createUser, loginUser}
