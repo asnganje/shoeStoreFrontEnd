@@ -1,6 +1,6 @@
 const App = () => {
   return(
-    <div>
+    <div className = "italic">
       Main App
     </div>
   )
