@@ -8,3 +8,4 @@ const store = configureStore({
 })
 
 export {store}
+export * from '../slices/userSlice'
