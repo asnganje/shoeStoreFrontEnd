@@ -1,3 +1,4 @@
+import Footer from "./Footer";
 import Header from "./Header";
 
 const Dashboard = () => {
@@ -6,6 +7,7 @@ const Dashboard = () => {
             <Header />
             Dashboard
             
+            <Footer />
         </main>
     )
 }
