@@ -3,9 +3,8 @@ import Header from "../Header";
 import { Link } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../redux/thunks/userThunk";
-
 
 const SignUp = () => {
 
@@ -15,6 +14,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
 
     const dispatch = useDispatch()
+    const {isActive} = useSelector((store)=>store.user)
 
     const fNameHandler = (e) => {
         setFirstName(e.target.value)
@@ -46,7 +46,7 @@ const SignUp = () => {
     return(
         <div className="relative mx-[5%] h-screen">
             <Header />
-            {<p className="text-green-500 text-2xl mx-[40%] font-mono">Success...</p>}
+            {isActive && <p className="text-green-500 text-2xl mx-[40%] font-mono">Success...</p>}
             <div className="flex relative flex-col gap-3 items-center justify-center text-xl font-mono mt-10">
                     <div className="bg-pink-200 p-5 shadow-lg rounded-md w-[100%] md:w-[70vh]">
                         <form onSubmit={userCreateHandler}>
