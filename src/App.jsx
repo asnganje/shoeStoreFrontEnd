@@ -1,8 +1,17 @@
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Dashboard from './components/Dashboard';
+import Login from './components/auth/Login';
+import SignUp from './components/auth/SignUp';
+
 const App = () => {
   return(
-    <div className = "italic">
-      Main App
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element = {<Dashboard />} />
+        <Route path='/login' element = {<Login />} />
+        <Route path='/signup' element = {<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
