@@ -12,8 +12,19 @@ const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [visible, setVisible] = useState(false)
 
     const dispatch = useDispatch()
+
+    let textType;
+    if(visible) {
+      textType = "text"
+    } else {
+      textType = "password"
+    }
+    const visibilityHandler = () => {
+      setVisible(!visible)
+    }
 
     const emailCHandler = (e) => {
       setEmail(e.target.value)
@@ -50,14 +61,15 @@ const Login = () => {
                 <label className="text-gray-600">Password</label>
                 <input
                   value={password}
+                  type={textType}
                   onChange={passwordCHandler}
                   className="w-[100%] rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
                 />
                 
                 <span className="">
-                {<FaRegEye className="text-2xl cursor-pointer mt-2"/>}
+                {visible &&<FaRegEye className="text-2xl cursor-pointer mt-2" onClick={visibilityHandler}/>}
                 
-                {<FaRegEyeSlash className="text-2xl cursor-pointer mt-2"/>}
+                {!visible &&<FaRegEyeSlash className="text-2xl cursor-pointer mt-2" onClick={visibilityHandler}/>}
                 
                 </span>
                 
