@@ -54,7 +54,9 @@ const Header = ({setCandidate}) => {
         key={item.id}
         className="text-orange-400 cursor-pointer p-1 text-xl hover:bg-blue-500 hover:rounded-md hover:text-white"
       >
-        {item.text}
+        <Link to={item.route}>
+            {item.text}
+        </Link>
       </li>
     );
   });
