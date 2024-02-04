@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { setLoggedOut } from "../redux/store";
 
 const data = [
+  { id: nanoid(), text: "Products", route: "/products" },
   { id: nanoid(), text: "Stores", route: "/store" },
 ];
 const Header = ({setCandidate}) => {
