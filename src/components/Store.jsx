@@ -7,6 +7,18 @@ import { getAllProducts, removeProduct, updateProduct } from "../redux/thunks/pr
 import { useNavigate } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import shoe1 from '../assets/shoe1.png'
+import shoe2 from '../assets/shoe2.png'
+import shoe3 from '../assets/shoe3.png'
+import shoe4 from '../assets/shoe4.png'
+import shoe5 from '../assets/shoe5.png'
+import shoe6 from '../assets/shoe6.png'
+import shoe7 from '../assets/shoe7.png'
+import shoe8 from '../assets/shoe8.png'
+import shoe9 from '../assets/shoe9.png'
+import shoe10 from '../assets/shoe10.png'
+
 
 const Store = () => {
   const [loading, setLoading] = useState(false);
@@ -16,16 +28,15 @@ const Store = () => {
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [id, setId] = useState('')
+  
+  const activeUser = localStorage.getItem('user')
 
   const { data } = useSelector((store) => store.store);
 
   let { data: productsData } = useSelector((store) => store.products);
 
   const removeHandler = (shoe) => {
-    // const store = {store: shoe._id}
     dispatch(removeProduct(shoe._id)).then(()=> {
-        // setSelectedStore(shoe.name);
-        // dispatch(getAllProducts(store))
     })
   }
 
@@ -49,27 +60,64 @@ const Store = () => {
   const editHandler = (e) => {
         e.preventDefault()
         dispatch(updateProduct(updatedProduct)).then(()=> {
-            // setSelectedStore('')
             setEditIndex(null)
 
         })
   }
 
+  const handleBack = () => {
+    setEditIndex(null)
+  }
+
+  const shoedata = [
+    {name: shoe1},
+    {name: shoe2},
+    {name: shoe3},
+    {name: shoe4},
+    {name: shoe5},
+    {name: shoe6},
+    {name: shoe7},
+    {name: shoe8},
+    {name: shoe9},
+    {name: shoe10},
+  ]
+  const getRandomShoeDisplay = (shoeData) => {
+    const randomIndex = Math.floor(Math.random() * shoeData.length);
+    return shoeData[randomIndex].name;
+  };
+
   let renderedShoes;
   if (productsData.length > 0) {
     renderedShoes = productsData.map((shoe, index) => {
+      const shoeDisplay = getRandomShoeDisplay(shoedata);
       return (
-        <li key={shoe._id}>
-          {shoe.name}
-          <button>
-            <CiEdit onClick={()=>handleProductEdit(shoe, index)}/>
-          </button>
-          {editIndex === index && <div className=" mx-[35%] mt-[10%] bg-pink-200 p-5 shadow-lg rounded-md w-[100%] md:w-[70vh]">
-                        <form>
-                            <div className="mb-3 flex gap-5">
-                                <label className="mt-1">Name</label>
-                                <input
-                                value={name}
+        <div key={shoe._id} className="border shadow-lg relative rounded-md">
+          <div className="flex">
+              <div className="flex flex-col p-[2%]">
+              <span>Name: {shoe.name}</span> 
+              <span>Price: ₺{shoe.price}</span> 
+              </div>
+              <div>
+                <img src={shoeDisplay} alt="shoe"/>
+              </div>
+          </div>
+          <div>
+              <button>
+                <CiEdit onClick={()=>handleProductEdit(shoe, index)}/>
+              </button>
+              <button
+                  onClick={() => removeHandler(shoe)}
+                  className="border p-1 m-[2%] rounded-md bg-red-400 text-white"
+                  >
+                <MdDelete />
+              </button>
+          </div>
+                {editIndex === index && <div className="absolute top-0 rounded-md w-full h-full flex items-center justify-center backdrop-blur-md backdrop-filter bg-opacity-30 bg-gray-500">
+                  <form>
+                      <div className="mb-3 flex gap-5">
+                        <label className="mt-1">Name</label>
+                          <input
+                          value={name}
                                 onChange={nameChangeHandler}
                                 type="text"
                                 className="w-full rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" 
@@ -85,16 +133,17 @@ const Store = () => {
                                 />
                             </div>
                             <button onClick={editHandler} className="text-white rounded-md w-[50%] mx-[35%] bg-gray-400 hover:bg-gray-500 p-2">Edit Product</button>
-                        </form>
+                    </form>
+                  <div 
+                    onClick={handleBack}
+                    className="cursor-pointer flex items-center justify-right hover:text-blue-500"
+                    >
+                    <IoMdArrowRoundBack/> <span>Back</span>
                     </div>
-                    }
-          <button
-            onClick={() => removeHandler(shoe)}
-            className="border p-1 m-[2%] rounded-md bg-red-400 text-white"
-          >
-            <MdDelete />
-          </button>
-        </li>
+                </div>
+              }
+
+        </div>
       );
     });
   }
@@ -138,22 +187,41 @@ const Store = () => {
   return (
     <div className="relative h-screen mx-[5%]">
       <Header />
-      <button onClick={handleStoreCreate}>Add a Store</button>
-      <div>
-        <label htmlFor="selectStore">Select Store:</label>
-        <select
-          onClick={handleVisibility}
-          id="selectStore"
-          name="store"
-          onChange={selectionHandler}
-          value={selectedStore}
-          required
-        >
-          <option value="" disabled hidden>Select a store</option>
-          {renderedOptions}
-        </select>
+      <div className="mt-[2%]">
+                <h1 className="uppercase font-mono font-bold text-pink-500 text-2xl">WELCOME TO THE TURKISH products list per store</h1>
       </div>
-      <div>{renderedShoes}</div>
+
+      <div className="flex justify-between">
+            <div
+              className="flex gap-10 text-black rounded-md sm:w-[30%] w-[50%] bg-gray-400 hover:bg-gray-500 p-2"
+              >
+              <label htmlFor="selectStore">Store name:</label>
+              <select
+                onClick={handleVisibility}
+                id="selectStore"
+                name="store"
+                className="w-[60%] text-xl rounded-md"
+                onChange={selectionHandler}
+                value={selectedStore}
+                required
+              >
+                <option value="" disabled hidden>Select a store</option>
+                {renderedOptions}
+              </select>
+            </div>
+            {activeUser && <button 
+              onClick={handleStoreCreate}
+              className="text-white text-xl rounded-md sm:w-[10%] w-[25%] bg-gray-400 hover:bg-gray-500 p-2"
+            >
+              Add a Store
+            </button>}
+      </div>
+
+      
+
+      <div className="grid grid-cols-3 gap-[5%] mt-[5%]">
+        {renderedShoes}
+      </div>
       <Footer />
     </div>
   );
