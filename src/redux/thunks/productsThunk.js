@@ -24,4 +24,27 @@ const getAllProducts = createAsyncThunk('products/getAllProducts', async (store)
     }
 })
 
-export {getAllProducts, createProduct}
+const updateProduct = createAsyncThunk('products/updateProduct', async(product)=> {
+
+    const {id, ...rest} = product
+    const url = `${baseUrl}/products?productId=${id}`
+    try {
+        const response = await axios.patch(url, rest)
+        return response.data.msg
+    } catch (error) {
+        throw new Error(`User could not be created due to ${error}`) 
+    }
+})
+
+const removeProduct = createAsyncThunk('products/removeProduct', async(productId)=> {
+    const url = `${baseUrl}/products?productId=${productId}`
+    try {
+        await axios.delete(url)
+        return productId
+    } catch (error) {
+        throw new Error(`User could not be created due to ${error}`) 
+    }
+})
+
+
+export {getAllProducts, createProduct, updateProduct, removeProduct}
