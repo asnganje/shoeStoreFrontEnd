@@ -29,7 +29,10 @@ const StoreCreate = () => {
     return(
         <div className="relative h-screen mx-[5%]">
             <Header />
-            <div className=" mx-[35%] mt-[10%] bg-pink-200 p-5 shadow-lg rounded-md w-[100%] md:w-[70vh]">
+            <div className="mt-[2%]">
+                <h1 className="uppercase font-mono font-bold text-pink-500 text-2xl">Manage creation of a new store</h1>
+            </div>
+            <div className=" mx-[35%] mt-[5%] bg-pink-500 p-5 shadow-lg rounded-md w-[60%] md:w-[70vh]">
                         <form onSubmit={handleStoreNameSubmit}>
                             <div className="mb-3 flex gap-5">
                                 <label className="mt-1">Name</label>
