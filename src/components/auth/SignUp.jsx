@@ -56,6 +56,7 @@ const SignUp = () => {
                                 value={firstName}
                                 onChange={fNameHandler}
                                 type="text"
+                                required = "true"
                                 className="w-full rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" 
                                 />
                             </div>
@@ -64,7 +65,8 @@ const SignUp = () => {
                                 <input
                                 value={lastName}
                                 onChange={lNameHandler}
-                                type="text" 
+                                type="text"
+                                required = "true" 
                                 className="w-full ml-2.5 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
                                 />
                             </div>
@@ -73,7 +75,8 @@ const SignUp = () => {
                                 <input
                                 value={email}
                                 onChange={emailHandler}
-                                type="text"
+                                type="email"
+                                required = "true"
                                 className="w-full ml-11 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" 
                                 />
                             </div>
@@ -83,6 +86,7 @@ const SignUp = () => {
                                 value={password}
                                 onChange={passwordHandler}
                                 type="text"
+                                required = "true"
                                 className="w-full ml-2.5 rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300" 
                                 />
                             </div>
