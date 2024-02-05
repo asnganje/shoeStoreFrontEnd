@@ -47,11 +47,12 @@ const Store = () => {
     }
 
     const selectionHandler = (e) => {
-        setSelectedStore(e.target.value)
-        const el = data.find((item)=>item.name === selectedStore)
+        const chosenStore = e.target.value;
+        setSelectedStore(chosenStore)
+        const el = data.find((item)=>item.name === chosenStore)
         if (el) {
-            const storeId = el._id
-            dispatch(getAllProducts(storeId))            
+            const store = {store: el._id}
+            dispatch(getAllProducts(store))            
         }
     }
 
