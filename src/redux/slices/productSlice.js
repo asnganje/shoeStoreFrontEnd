@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createProduct, getAllProducts } from "../thunks/productsThunk";
+import { createProduct, getAllProducts, removeProduct, updateProduct } from "../thunks/productsThunk";
 
 const ourProducts = {
     isLoading: false,
@@ -25,9 +25,35 @@ const productSlice = createSlice({
           }),
           builder.addCase(createProduct.fulfilled, (state)=> {
             state.isLoading = false;
-            // state.data.push(action.payload)
           }),
           builder.addCase(createProduct.rejected, (state)=> {
+            state.isLoading = false;
+          }),
+          builder.addCase(removeProduct.pending, (state)=> {
+            state.isLoading = true;
+          }),
+          builder.addCase(removeProduct.fulfilled, (state, action)=> {
+            state.isLoading = false;
+            state.data = state.data.filter((el)=> el._id !== action.payload)
+            return state
+        }),
+          builder.addCase(removeProduct.rejected, (state)=> {
+            state.isLoading = false;
+          }),
+          builder.addCase(updateProduct.pending, (state)=> {
+            state.isLoading = true;
+          }),
+          builder.addCase(updateProduct.fulfilled, (state, action)=> {
+            state.isLoading = false;
+            state.data = state.data.map((el)=> {
+                if (el._id === action.payload._id) {
+                   const updatedEl = {...el, name: action.payload.name}
+                   return updatedEl
+                }
+                return el
+            })
+          }),
+          builder.addCase(updateProduct.rejected, (state)=> {
             state.isLoading = false;
           })
     }
