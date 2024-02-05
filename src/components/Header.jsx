@@ -50,17 +50,36 @@ const Header = ({setCandidate}) => {
 
 
   const renderedHeaderItems = data.map((item) => {
-    return (
-      <li
-        key={item.id}
-        className="text-orange-400 cursor-pointer p-1 text-xl hover:bg-blue-500 hover:rounded-md hover:text-white"
-      >
-        <Link to={item.route}>
-            {item.text}
-        </Link>
-      </li>
-    );
-  });
+
+    if (item.text === 'Products') {
+      if (activeUser) {
+        return (
+          <li
+            key={item.id}
+            className="text-orange-400 cursor-pointer p-1 text-xl hover:bg-blue-500 hover:rounded-md hover:text-white"
+          >
+            <Link to={item.route}>
+              {item.text}
+            </Link>
+          </li>
+        )
+      } else {
+        return null
+      }
+    } 
+    else {
+      return (
+          <li
+            key={item.id}
+            className="text-orange-400 cursor-pointer p-1 text-xl hover:bg-blue-500 hover:rounded-md hover:text-white"
+          >
+            <Link to={item.route}>
+              {item.text}
+            </Link>
+          </li>
+        )
+    }})
+
   return (
     <>
       <div className="flex items-center justify-between shadow-lg">
