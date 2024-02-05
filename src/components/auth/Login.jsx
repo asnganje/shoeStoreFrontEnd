@@ -68,7 +68,8 @@ const Login = () => {
                 <input
                   value={email}
                   onChange={emailCHandler}
-                  type="text"
+                  type="email"
+                  required = "true"
                   className="w-[100%] mr-[8%] rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
                 />
               </div>
@@ -77,6 +78,7 @@ const Login = () => {
                 <input
                   value={password}
                   type={textType}
+                  required = "true"
                   onChange={passwordCHandler}
                   className="w-[100%] rounded-md p-2 focus:outline-none focus:ring focus:border-blue-300"
                 />
