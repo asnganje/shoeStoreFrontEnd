@@ -81,15 +81,20 @@ const Store = () => {
     {name: shoe9},
     {name: shoe10},
   ]
-  const getRandomShoeDisplay = (shoeData) => {
-    const randomIndex = Math.floor(Math.random() * shoeData.length);
-    return shoeData[randomIndex].name;
+  const getRandomShoeDisplay = (index) => {
+    if (index >= 0 && index < shoedata.length) {
+      return shoedata[index].name;
+    } else {
+      console.error("Index out of bounds");
+      return null; 
+    }
   };
 
   let renderedShoes;
   if (productsData.length > 0) {
     renderedShoes = productsData.map((shoe, index) => {
-      const shoeDisplay = getRandomShoeDisplay(shoedata);
+      const shoeDisplay = getRandomShoeDisplay(index);
+
       return (
         <div key={shoe._id} className="border shadow-lg relative rounded-md">
           <div className="flex">
