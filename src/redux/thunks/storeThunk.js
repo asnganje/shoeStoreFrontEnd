@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/api/v1/shoestore"
+const baseUrl = "https://shoestorebackend.onrender.com" || "http://localhost:3000/api/v1/shoestore"
 
 const createStore = createAsyncThunk('store/createStore', async(store)=> {
     const url = `${baseUrl}/store`
